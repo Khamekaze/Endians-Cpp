@@ -1,0 +1,3 @@
+D:/Programmering/Embedded/Endians/cmake-build-debug/CMakeFiles/Endians.dir
+D:/Programmering/Embedded/Endians/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/Programmering/Embedded/Endians/cmake-build-debug/CMakeFiles/rebuild_cache.dir
