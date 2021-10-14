@@ -43,8 +43,8 @@ string bin_str16(unsigned short value) {
     return result;
 }
 
-unsigned short swapBytes(unsigned short input) {
-    return input >> 8 | input << 8;
+unsigned short toLittleEndian(unsigned short input) {
+    return (input >> 8) | (input << 8);
 }
 
 unsigned char middleByte(unsigned short input) {
@@ -77,15 +77,14 @@ int main() {
             unsigned short currentNum = (unsigned short) strtoul(line.c_str(), NULL, 0);
 
             //Swap the bytes
-            unsigned short swappedBytesShort = swapBytes(currentNum);
-
-            //Write the byte-swapped number to little endian output file
-            writeLittleEndian(littleEndiansFile, bin_str16(swappedBytesShort));
+            unsigned short swappedBytesShort = toLittleEndian(currentNum);
 
             //Get the middle byte of the byte-swapped short
             unsigned char middleByteChar = middleByte(swappedBytesShort);
 
-            //Write the extracted middle byte as char, decimal and binary to
+            //Write the byte-swapped number to little endian output file
+            writeLittleEndian(littleEndiansFile, bin_str16(swappedBytesShort));
+            //Write the extracted middle byte as decimal and binary to
             //middle bytes output file
             writeMiddleBytes(swappedBytesFile, middleByteChar);
         }
@@ -101,7 +100,7 @@ int main() {
      *
     //  unsigned short testVal = 12549;
     //  cout << "Original bytes:   " << bin_str16(testVal) << endl;
-    //  unsigned short swapVal = swapBytes(testVal);
+    //  unsigned short swapVal = toLittleEndian(testVal);
     //  cout << "Swapped bytes:    " << bin_str16(swapVal) << endl;
     //  unsigned char middleByteChar = middleByte(swapVal);
     //  cout << middleByteChar << endl;
