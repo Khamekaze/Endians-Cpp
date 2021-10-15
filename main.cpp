@@ -52,8 +52,8 @@ unsigned char middleByte(unsigned short input) {
     return c;
 }
 
-void writeLittleEndian(ofstream& stream, string input) {
-    stream << input << endl;
+void writeLittleEndian(ofstream& stream, unsigned short input) {
+    stream << input << " | Binary: " << bin_str16(input) << endl;
 }
 
 void writeMiddleBytes(ofstream& stream, unsigned char c) {
@@ -83,7 +83,7 @@ int main() {
             unsigned char middleByteChar = middleByte(swappedBytesShort);
 
             //Write the byte-swapped number to little endian output file
-            writeLittleEndian(littleEndiansFile, bin_str16(swappedBytesShort));
+            writeLittleEndian(littleEndiansFile, swappedBytesShort);
             //Write the extracted middle byte as decimal and binary to
             //middle bytes output file
             writeMiddleBytes(swappedBytesFile, middleByteChar);
